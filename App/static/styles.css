@@ -1,0 +1,67 @@
+/* Drag & Drop Styling */
+.drop-zone {
+    border: 2px dashed #3498db;
+    border-radius: 5px;
+    padding: 40px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.drop-zone--over {
+    border-color: #2ecc71;
+    background-color: rgba(46, 204, 113, 0.1);
+}
+
+.drop-zone__prompt {
+    color: #7f8c8d;
+    font-size: 1.1em;
+}
+
+.drop-zone__input {
+    display: none;
+}
+
+/* Upload Area */
+.upload-area {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* File List Styling */
+.file-list {
+    max-width: 800px;
+    margin: 40px auto;
+}
+
+.file-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+}
+
+.file-name {
+    flex-grow: 1;
+    margin-right: 15px;
+    word-break: break-all;
+}
+
+.download-btn {
+    white-space: nowrap;
+}
+
+/* Upload Progress Styling */
+.upload-progress {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid #eee;
+}
+
+.status {
+    font-size: 0.8em;
+    color: #6c757d;
+}
