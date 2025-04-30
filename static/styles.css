@@ -1,0 +1,457 @@
+/* Modern Dark Theme Styling with Enhanced Animations */
+:root {
+    --primary-color: #6c5ce7;
+    --primary-hover: #5649c0;
+    --success-color: #00b894;
+    --text-color: #f8f9fa;
+    --bg-color: #1a1a2e;
+    --card-bg: #16213e;
+    --border-color: #2d4059;
+    --dropzone-bg: rgba(108, 92, 231, 0.1);
+    --dropzone-over: rgba(0, 184, 148, 0.2);
+}
+
+body {
+    font-family: "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    background-attachment: fixed;
+    color: var(--text-color);
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    animation: gradientShift 15s ease infinite;
+    background-size: 200% 200%;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+h1::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: var(--primary-color);
+    border-radius: 3px;
+    animation: lineExpand 0.8s ease-out;
+}
+
+@keyframes lineExpand {
+    from {
+        width: 0;
+        opacity: 0;
+    }
+    to {
+        width: 100px;
+        opacity: 1;
+    }
+}
+
+/* Upload Area Styling */
+.upload-area {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    margin-bottom: 30px;
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Drag & Drop Styling */
+.drop-zone {
+    border: 2px dashed var(--primary-color);
+    border-radius: 8px;
+    padding: 40px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: var(--dropzone-bg);
+    position: relative;
+    overflow: hidden;
+}
+
+.drop-zone::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to bottom right,
+        transparent,
+        transparent,
+        transparent,
+        rgba(108, 92, 231, 0.1),
+        transparent,
+        transparent,
+        transparent
+    );
+    transform: rotate(30deg);
+    transition: all 0.5s ease;
+}
+
+.drop-zone:hover::before {
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% {
+        left: -50%;
+    }
+    100% {
+        left: 150%;
+    }
+}
+
+.drop-zone--over {
+    border-color: var(--success-color);
+    background-color: var(--dropzone-over);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 184, 148, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 0 15px rgba(0, 184, 148, 0);
+    }
+}
+
+.drop-zone__prompt {
+    color: var(--text-color);
+    font-size: 1.1em;
+    display: block;
+    margin-bottom: 10px;
+    opacity: 0.9;
+    /* animation: textFlicker 6s infinite; */
+}
+
+@keyframes textFlicker {
+    0%,
+    19.999%,
+    22%,
+    62.999%,
+    64%,
+    64.999%,
+    70%,
+    100% {
+        opacity: 0.9;
+        text-shadow: none;
+    }
+    20%,
+    21.999%,
+    63%,
+    63.999%,
+    65%,
+    69.999% {
+        opacity: 1;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    }
+}
+
+.drop-zone__input {
+    display: none;
+}
+
+/* Button Styling */
+.btn-primary {
+    background-color: var(--primary-color);
+    border: none;
+    padding: 10px 25px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(30deg);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(108, 92, 231, 0.4);
+}
+
+.btn-primary:hover::after {
+    left: 120%;
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+.btn-success {
+    background-color: var(--success-color);
+    border: none;
+}
+
+/* File List Styling */
+.file-list {
+    background: var(--card-bg);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.8s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.list-group {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.list-group-item {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+.list-group-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
+}
+
+.file-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.file-name {
+    flex-grow: 1;
+    margin-right: 15px;
+    word-break: break-all;
+    color: var(--text-color);
+    opacity: 0.9;
+}
+
+.download-btn,
+.copy-btn {
+    white-space: nowrap;
+    border-radius: 6px;
+    padding: 8px 12px;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.download-btn:hover,
+.copy-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.download-btn:active,
+.copy-btn:active {
+    transform: scale(0.98);
+}
+
+.material-icons {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+.download-btn:hover .material-icons {
+    animation: bounce 0.5s infinite alternate;
+}
+
+@keyframes bounce {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-3px);
+    }
+}
+
+/* Upload Progress Styling */
+.upload-progress {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    margin-top: 20px;
+}
+
+.progress {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    height: 6px !important;
+}
+
+.progress-bar {
+    background-color: var(--primary-color);
+    transition: width 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-bar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    animation: progressShine 2s infinite;
+}
+
+@keyframes progressShine {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.status {
+    font-size: 0.8em;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Copy Button Animation */
+.copy-btn.copied {
+    background-color: var(--success-color) !important;
+    animation: fadeOut 2s ease-in-out forwards;
+}
+
+.copy-btn .material-icons {
+    transition: all 0.3s ease;
+}
+
+.copy-btn.copied .material-icons {
+    transform: scale(1.3);
+}
+
+@keyframes fadeOut {
+    to {
+        background-color: var(--primary-color);
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px 15px;
+    }
+
+    .upload-area,
+    .file-list {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    .file-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .file-name {
+        margin-bottom: 10px;
+    }
+
+    .upload-area {
+        animation: none;
+    }
+}

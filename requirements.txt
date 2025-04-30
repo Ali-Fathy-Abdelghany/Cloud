@@ -11,3 +11,6 @@ python-dateutil==2.8.2  # Required by boto3
 
 # Security
 werkzeug==2.3.7  # WSGI utilities (included with Flask)
+
+# Environment Variables
+python-dotenv==1.0.0

@@ -114,14 +114,12 @@ uploadBtn.addEventListener("click", async () => {
         alert(`Upload failed: ${error.message}`);
     }
 });
-// Add this at the bottom of your existing script.js
 
 // Function to fetch and display files
 async function fetchAndDisplayFiles() {
     try {
         const response = await fetch("/list-files");
         const files = await response.json();
-
         const container = document.getElementById("file-list-container");
         container.innerHTML = "";
 
@@ -135,18 +133,64 @@ async function fetchAndDisplayFiles() {
             const fileItem = document.createElement("div");
             fileItem.className = "list-group-item file-item";
             fileItem.innerHTML = `
-                <span class="file-name">${file.Key}</span>
-                <a href="${file.Url}" class="btn btn-sm btn-success download-btn" download>
-                    Download
-                </a>
+                <span class="file-name">${file.key}</span>
+                <div>
+                    <a href="${file.url}" class="btn btn-sm btn-success download-btn me-2" download>
+                        <span class="material-icons">
+                            download
+                        </span>
+                    </a>
+                    <button class="btn btn-sm btn-primary copy-btn" data-url="${file.url}">
+                        <span class="material-icons">
+                            content_copy
+                        </span>
+                    </button>
+                </div>
             `;
             container.appendChild(fileItem);
+        });
+        document.querySelectorAll(".copy-btn").forEach((btn) => {
+            btn.addEventListener("click", copyToClipboard);
         });
     } catch (error) {
         console.error("Error fetching files:", error);
     }
 }
 
+function copyToClipboard(e) {
+    let clickedOnIcon = false;
+    if (e.target.tagName === "SPAN") {
+        clickedOnIcon = true;
+        target = e.target.parentElement; // Get the button element
+    } else {
+        target = e.target; // Get the button element
+    }
+
+    let url = target.getAttribute("data-url");
+    console.log(url);
+
+    navigator.clipboard
+        .writeText(url)
+        .then(() => {
+            // Visual feedback
+            const originalText = target.innerHTML;
+            target.innerHTML = `<span class="material-icons">
+                done_outline
+            </span>`;
+            target.classList.add("btn-success");
+            target.classList.remove("btn-primary");
+
+            setTimeout(() => {
+                target.innerHTML = originalText;
+                target.classList.remove("btn-success");
+                target.classList.add("btn-primary");
+            }, 2000);
+        })
+        .catch((err) => {
+            console.error("Failed to copy: ", err);
+            alert("Failed to copy link. Please try again.");
+        });
+}
 // Call when page loads
 document.addEventListener("DOMContentLoaded", fetchAndDisplayFiles);
 
